@@ -1,0 +1,37 @@
+#==============================================================================#
+# This file specifies intentionally untracked files that git should ignore.
+# See: http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
+#
+# This file is intentionally different from the output of `git svn show-ignore`,
+# as most of those are useless.
+#==============================================================================#
+
+#==============================================================================#
+# File extensions to be ignored anywhere in the tree.
+#==============================================================================#
+# OS X specific files
+.DS_store
+
+# Ignore the user specified CMake presets in subproject directories
+/*/CMakeUserPresets.json
+
+#==============================================================================#
+# Explicit files to ignore (only matches one).
+#==============================================================================#
+# Visual Studio built-in CMake configuration
+/CMakeSettings.json
+
+#==============================================================================#
+# Directories to ignore (do not add trailing '/'s, they skip symlinks).
+#==============================================================================#
+# Build directory
+/build
+
+# Installed game
+/game
+
+# Installed libraries
+/lib
+
+# Build logs
+/log

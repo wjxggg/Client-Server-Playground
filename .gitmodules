@@ -1,0 +1,6 @@
+[submodule "src/third-party/SDL"]
+	path = src/third-party/SDL
+	url = git@github.com:libsdl-org/SDL.git
+[submodule "src/third-party/spdlog"]
+	path = src/third-party/spdlog
+	url = git@github.com:gabime/spdlog.git

@@ -1,0 +1,18 @@
+{
+	"clangd.arguments": [
+		"--compile-commands-dir=${workspaceFolder}/build/x86_64-windows-gnu/game",
+		"--header-insertion=never"
+	],
+	"editor.inlayHints.enabled":"off",
+	"files.exclude": {
+		"**/.git": true,
+		"**/build": true,
+		"**/game": true,
+		"**/lib" : true
+	},
+	"search.exclude": {
+		"**/src/engine/Client/ImGui": true,
+		"**/src/engine/yojimbo": true,
+		"**/src/third-party": true
+	}
+}
