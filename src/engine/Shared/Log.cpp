@@ -6,9 +6,7 @@
 #include <spdlog/logger.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-#if defined(BE_HOST_CLIENT)
-	#include "Console.h"
-#endif
+#include "Console.h"
 
 #if defined(BE_HOST_CLIENT)
 	#define LOCAL_HOST Log::CLIENT
@@ -18,12 +16,10 @@
 
 BE_USING_NAMESPACE
 
-static std::array<spdlog::logger, 5> m_loggers{
+static std::array<spdlog::logger, 3> m_loggers{
 	spdlog::logger{"client"},
 	spdlog::logger{"server"},
-	spdlog::logger{"module"},
-	spdlog::logger{"user"},
-	spdlog::logger{"vulkan"}
+	spdlog::logger{"user"}
 };
 
 void Log::Init()
@@ -36,13 +32,11 @@ void Log::Init()
 		m_loggers[i].sinks().emplace_back(stdoutSink);
 	}
 
-#if defined(BE_HOST_CLIENT)
 	auto consoleSink = std::make_shared<ConsoleSink>();
 	for (int i = 0; i < m_loggers.size(); ++i)
 	{
 		m_loggers[i].sinks().emplace_back(consoleSink);
 	}
-#endif
 }
 
 void Log::Dump(const std::string &file)

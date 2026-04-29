@@ -15,20 +15,18 @@ enum Source : uint32_t
 {
 	CLIENT,
 	SERVER,
-	MODULE,
 	USER,
-	VULKAN,
 	LOCAL
 };
 
 enum Level : uint32_t
 {
-	TRACE,
-	DEBUG,
-	INFO,
-	WARN,
-	ERROR,
-	CRITICAL
+	LEVEL_TRACE,
+	LEVEL_DEBUG,
+	LEVEL_INFO,
+	LEVEL_WARN,
+	LEVEL_ERROR,
+	LEVEL_CRITICAL
 };
 
 BE_API void Dump(const std::string &file);

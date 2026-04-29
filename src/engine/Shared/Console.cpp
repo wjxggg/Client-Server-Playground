@@ -27,13 +27,11 @@ static consteval ImU32 RGBAToU32(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
     return color;
 }
 
-constexpr std::array<const char *const, 5> MESSAGE_SOURCE_STRING{"default", "client", "server", "user", "vulkan"};
-constexpr std::array<ImU32, 5> MESSAGE_SOURCE_COLOR{
-    RGBAToU32(128, 128, 128, 255), // default (gray)
-    RGBAToU32(253, 253, 150, 255), // client (pastel yellow)
-    RGBAToU32(32, 224, 208, 255),  // server (bright turquoise)
-    RGBAToU32(108, 232, 108, 255), // user (pastel green)
-    RGBAToU32(172, 22, 44, 255),   // vulkan (vulkan red)
+constexpr std::array<const char *const, 3> MESSAGE_SOURCE_STRING{"client", "server", "user"};
+constexpr std::array<ImU32, 3> MESSAGE_SOURCE_COLOR{
+    RGBAToU32(253, 253, 150, 255),	// client (pastel yellow)
+    RGBAToU32(32, 224, 208, 255),	// server (bright turquoise)
+    RGBAToU32(108, 232, 108, 255)	// user (pastel green)
 };
 
 constexpr std::array<const char *const, 6> MESSAGE_LEVEL_STRING{"trace", "debug", "info", "warn", "error", "critical"};
@@ -53,8 +51,8 @@ constexpr size_t CONSOLE_COMMAND_SIZE = 512;
 //-----------------------------------------------------------------------------
 
 static bool m_isOpen{true};
-static uint32_t m_messageSourceFilter{Util_ToFlagBit(Log::CLIENT) | Util_ToFlagBit(Log::SERVER) | Util_ToFlagBit(Log::MODULE) | Util_ToFlagBit(Log::USER) | Util_ToFlagBit(Log::VULKAN)};
-static uint32_t m_messageLevelFilter{Util_ToFlagBit(Log::TRACE) | Util_ToFlagBit(Log::DEBUG) | Util_ToFlagBit(Log::INFO) | Util_ToFlagBit(Log::WARN) | Util_ToFlagBit(Log::ERROR) | Util_ToFlagBit(Log::CRITICAL)};
+static uint32_t m_messageSourceFilter{Util_ToFlagBit(Log::CLIENT) | Util_ToFlagBit(Log::SERVER) | Util_ToFlagBit(Log::USER)};
+static uint32_t m_messageLevelFilter{Util_ToFlagBit(Log::LEVEL_TRACE) | Util_ToFlagBit(Log::LEVEL_DEBUG) | Util_ToFlagBit(Log::LEVEL_INFO) | Util_ToFlagBit(Log::LEVEL_WARN) | Util_ToFlagBit(Log::LEVEL_ERROR) | Util_ToFlagBit(Log::LEVEL_CRITICAL)};
 
 static ImGuiLogger m_textLogger;
 
@@ -134,12 +132,8 @@ uint32_t GetSourceFromLoggerName(const char *const loggerName)
             return Log::CLIENT;
         case 's':
             return Log::SERVER;
-		case 'm':
-            return Log::MODULE;
         case 'u':
             return Log::USER;
-        case 'v':
-            return Log::VULKAN;
     }
 
 	std::unreachable();
